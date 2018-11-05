@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  find-duplicates:
+    image: williamjackson/find-duplicates
+    build: .

@@ -1,11 +1,9 @@
-import collections
+import PIL.Image
 import concurrent.futures
 import dhash
-import hashlib
 import json
 import os
 import pathlib
-import PIL.Image
 
 
 def print_return(s):
@@ -20,23 +18,12 @@ def get_dhash(file_path):
     return dhash.dhash_int(image)
 
 
-def get_hash(file_path, buffer_size=65536):
-    with file_path.open(mode='rb') as f:
-        hasher = hashlib.sha256()
-        buffer = f.read(buffer_size)
-        while len(buffer) > 0:
-            hasher.update(buffer)
-            buffer = f.read(buffer_size)
-        return hasher.hexdigest()
-
-
 def main():
-    file_list = []
-    hashes = {}
-    dupes = collections.defaultdict(list)
+    source_dir: pathlib.Path = pathlib.Path(os.getenv('SOURCE_DIR', os.getcwd())).resolve()
 
+    file_list = []
     count = 0
-    for root, folders, files in os.walk(os.getcwd()):
+    for root, folders, files in os.walk(str(source_dir)):
         root_path = pathlib.Path(root).resolve()
         for fn in files:
             count += 1
@@ -44,6 +31,7 @@ def main():
             print_return('Collected {} files'.format(count))
     print('Collected {} files'.format(count))
 
+    hashes = {}
     count = 0
     with concurrent.futures.ThreadPoolExecutor() as executor:
         futures = {executor.submit(get_dhash, file): file for file in sorted(file_list)}
@@ -56,9 +44,13 @@ def main():
             print_return('Scanned {} files'.format(count))
     print('Scanned {} files\n**'.format(count))
 
-    dhash_json = pathlib.Path(os.getcwd()).resolve() / 'dhash.json'
-    with dhash_json.open('w') as f:
+    dhash_file = pathlib.Path(os.getenv('DHASH_FILE'))
+    if dhash_file is None:
+        dhash_file = pathlib.Path(os.getcwd()) / 'dhash.json'
+    dhash_file = dhash_file.resolve()
+    with dhash_file.open('w') as f:
         json.dump(hashes, f, indent=2)
+
 
 if __name__ == '__main__':
     main()
