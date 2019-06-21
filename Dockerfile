@@ -12,6 +12,6 @@ ENV PYTHONUNBUFFERED 1
 ENTRYPOINT ["/usr/local/bin/python"]
 
 LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>" \
-      org.opencontainers.image.version=0.0.1
+      org.opencontainers.image.version=0.0.2
 
 COPY . /find-duplicates
