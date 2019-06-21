@@ -1,4 +1,4 @@
-FROM python:3.7.1-alpine3.8
+FROM python:3.7.3-alpine3.9
 
 COPY requirements.txt /find-duplicates/requirements.txt
 
@@ -11,8 +11,7 @@ ENV PYTHONUNBUFFERED 1
 
 ENTRYPOINT ["/usr/local/bin/python"]
 
-LABEL maintainer=william@subtlecoolness.com \
-      org.label-schema.schema-version=1.0 \
-      org.label-schema.version=0.0.1
+LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>" \
+      org.opencontainers.image.version=0.0.1
 
 COPY . /find-duplicates
