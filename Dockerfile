@@ -9,7 +9,7 @@ RUN /usr/bin/apt-get update \
  && /bin/rm --force --recursive /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED="1" \
-    VERSION="2019.1"
+    VERSION="2020.1"
 
 ENTRYPOINT ["/usr/local/bin/python"]
 
