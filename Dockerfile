@@ -1,12 +1,10 @@
-FROM python:3.8.5-slim
+FROM python:3.8.5-alpine3.12
 
 COPY requirements.txt /find-duplicates/requirements.txt
 
-ARG DEBIAN_FRONTEND="noninteractive"
-RUN /usr/bin/apt-get update \
- && /usr/bin/apt-get --assume-yes install libexempi8 \
- && /usr/local/bin/pip install --no-cache-dir --requirement /find-duplicates/requirements.txt \
- && /bin/rm --force --recursive /var/lib/apt/lists/*
+# these packages are needed at runtime for python-xmp-toolkit
+RUN /sbin/apk add --no-cache exempi-dev gcc
+RUN /usr/local/bin/pip install --no-cache-dir --requirement /find-duplicates/requirements.txt
 
 ENV PYTHONUNBUFFERED="1" \
     VERSION="2020.1"
