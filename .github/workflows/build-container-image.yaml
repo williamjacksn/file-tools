@@ -22,9 +22,7 @@ jobs:
       - name: Build the container image
         uses: docker/build-push-action@v1.1.0
         with:
-          repository: ${{ github.repository }}/find-duplicates
-          registry: docker.pkg.github.com
-          push: false
+          repository: find-duplicates
       - name: Tag and push the image
         if: github.event_name == 'push' || github.event_name == 'release'
         uses: docker/build-push-action@v1.1.0
