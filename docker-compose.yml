@@ -1,6 +1,5 @@
-version: '3.7'
+version: '3.8'
 
 services:
   find-duplicates:
-    image: docker.pkg.github.com/williamjacksn/find-duplicates/find-duplicates
-    build: .
+    image: ghcr.io/williamjacksn/find-duplicates
