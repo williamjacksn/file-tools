@@ -25,6 +25,7 @@ ENTRYPOINT ["/bin/sh"]
 LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>" \
       org.opencontainers.image.version="${VERSION}"
 
+COPY --chown=python:python convert_to_jpg.py /home/python/file-tools/convert_to_jpg.py
 COPY --chown=python:python find_duplicates.py /home/python/file-tools/find_duplicates.py
 COPY --chown=python:python find_similar.py /home/python/file-tools/find_similar.py
 COPY --chown=python:python fix_dates.py /home/python/file-tools/fix_dates.py
