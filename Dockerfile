@@ -3,6 +3,9 @@ FROM python:3.10.2-alpine3.15
 # these packages are needed at runtime for python-xmp-toolkit
 RUN /sbin/apk add --no-cache exempi-dev gcc
 
+# for reading heic images
+RUN /sbin/apk add --no-cache imagemagick
+
 RUN /usr/sbin/adduser -g python -D python
 
 USER python
