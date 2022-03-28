@@ -1,4 +1,4 @@
-FROM python:3.10.3-alpine3.15
+FROM python:3.10.4-alpine3.15
 
 # these packages are needed at runtime for python-xmp-toolkit
 RUN /sbin/apk add --no-cache exempi-dev gcc
