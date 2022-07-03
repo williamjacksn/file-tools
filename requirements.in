@@ -1,0 +1,7 @@
+--extra-index-url https://alpine-wheels.github.io/index
+
+dhash
+piexif
+pillow
+pybktree
+python-xmp-toolkit
