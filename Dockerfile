@@ -3,6 +3,9 @@ FROM python:3.10.5-alpine3.15
 # these packages are needed at runtime for python-xmp-toolkit
 RUN /sbin/apk add --no-cache exempi-dev gcc
 
+# because exiftool is cool
+RUN /sbin/apk add --no-cache exiftool
+
 # for reading heic images
 RUN /sbin/apk add --no-cache imagemagick
 
