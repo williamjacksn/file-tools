@@ -19,14 +19,12 @@ RUN /home/python/venv/bin/pip install --no-cache-dir --requirement /home/python/
 
 ENV PATH="/home/python/venv/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE="1" \
-    PYTHONUNBUFFERED="1" \
-    VERSION="2020.1"
+    PYTHONUNBUFFERED="1"
 
 WORKDIR /home/python/file-tools
 ENTRYPOINT ["/bin/sh"]
 
-LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>" \
-      org.opencontainers.image.version="${VERSION}"
+LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>"
 
 COPY --chown=python:python convert_to_jpg.py /home/python/file-tools/convert_to_jpg.py
 COPY --chown=python:python find_duplicates.py /home/python/file-tools/find_duplicates.py
