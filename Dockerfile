@@ -19,7 +19,8 @@ RUN /home/python/venv/bin/pip install --no-cache-dir --requirement /home/python/
 
 ENV PATH="/home/python/venv/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE="1" \
-    PYTHONUNBUFFERED="1"
+    PYTHONUNBUFFERED="1" \
+    TZ="Etc/UTC"
 
 WORKDIR /home/python/file-tools
 ENTRYPOINT ["/bin/sh"]
