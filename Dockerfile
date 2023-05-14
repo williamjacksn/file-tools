@@ -6,6 +6,9 @@ RUN /sbin/apk add --no-cache exempi-dev gcc
 # because exiftool is cool
 RUN /sbin/apk add --no-cache exiftool
 
+# ffpmeg is nice to have
+RUN /sbin/apk add --no-cache ffmpeg
+
 # file is useful
 RUN /sbin/apk add --no-cache file
 
