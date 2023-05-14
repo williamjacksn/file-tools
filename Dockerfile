@@ -6,6 +6,9 @@ RUN /sbin/apk add --no-cache exempi-dev gcc
 # because exiftool is cool
 RUN /sbin/apk add --no-cache exiftool
 
+# file is useful
+RUN /sbin/apk add --no-cache file
+
 # for reading heic images
 RUN /sbin/apk add --no-cache imagemagick
 
