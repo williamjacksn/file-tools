@@ -14,7 +14,7 @@ pillow==10.2.0
     # via -r requirements.in
 pybktree==1.1
     # via -r requirements.in
-python-xmp-toolkit==2.0.1
+python-xmp-toolkit==2.0.2
     # via -r requirements.in
 pytz==2023.3.post1
     # via python-xmp-toolkit
