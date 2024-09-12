@@ -16,5 +16,5 @@ pybktree==1.1
     # via -r requirements.in
 python-xmp-toolkit==2.0.2
     # via -r requirements.in
-pytz==2024.1
+pytz==2024.2
     # via python-xmp-toolkit
