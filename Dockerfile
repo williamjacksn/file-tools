@@ -1,21 +1,21 @@
-FROM python:3.12-alpine
+FROM python:3.12-slim
 
 # these packages are needed at runtime for python-xmp-toolkit
-RUN /sbin/apk add --no-cache exempi-dev gcc
+# RUN /sbin/apk add --no-cache exempi-dev gcc
 
 # because exiftool is cool
-RUN /sbin/apk add --no-cache exiftool
+# RUN /sbin/apk add --no-cache exiftool
 
 # ffpmeg is nice to have
-RUN /sbin/apk add --no-cache ffmpeg
+# RUN /sbin/apk add --no-cache ffmpeg
 
 # file is useful
-RUN /sbin/apk add --no-cache file
+# RUN /sbin/apk add --no-cache file
 
 # for reading heic images
-RUN /sbin/apk add --no-cache imagemagick
+# RUN /sbin/apk add --no-cache imagemagick
 
-RUN /usr/sbin/adduser -g python -D python
+RUN /usr/sbin/useradd --create-home --shell /bin/bash --user-group python
 
 USER python
 RUN /usr/local/bin/python -m venv /home/python/venv
@@ -29,7 +29,7 @@ ENV PATH="/home/python/venv/bin:${PATH}" \
     TZ="Etc/UTC"
 
 WORKDIR /home/python/file-tools
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["/bin/bash"]
 
 LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>"
 
