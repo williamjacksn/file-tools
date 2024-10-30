@@ -4,8 +4,6 @@
 #
 #    pip-compile
 #
---extra-index-url https://alpine-wheels.github.io/index
-
 dhash==1.4
     # via -r requirements.in
 piexif==1.1.3
