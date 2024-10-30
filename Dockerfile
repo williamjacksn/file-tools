@@ -1,19 +1,9 @@
 FROM python:3.12-slim
 
-# these packages are needed at runtime for python-xmp-toolkit
-# RUN /sbin/apk add --no-cache exempi-dev gcc
-
-# because exiftool is cool
-# RUN /sbin/apk add --no-cache exiftool
-
-# ffpmeg is nice to have
-# RUN /sbin/apk add --no-cache ffmpeg
-
-# file is useful
-# RUN /sbin/apk add --no-cache file
-
-# for reading heic images
-# RUN /sbin/apk add --no-cache imagemagick
+ARG DEBIAN_FRONTEND=noninteractive
+RUN /usr/bin/apt-get update \
+ && /usr/bin/apt-get install --assume-yes ffmpeg file imagemagick libimage-exiftool-perl \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/sbin/useradd --create-home --shell /bin/bash --user-group python
 
