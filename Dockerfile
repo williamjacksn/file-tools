@@ -40,4 +40,3 @@ COPY --chown=python:python fix_dates.py /home/python/file-tools/fix_dates.py
 COPY --chown=python:python gen_dhash.py /home/python/file-tools/gen_dhash.py
 COPY --chown=python:python hash_rename.py /home/python/file-tools/hash_rename.py
 COPY --chown=python:python remove_live_photos.py /home/python/file-tools/remove_live_photos.py
-COPY --chown=python:python rename_from_xmp.py /home/python/file-tools/rename_from_xmp.py
