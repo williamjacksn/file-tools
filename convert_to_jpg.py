@@ -12,7 +12,7 @@ def parse_args():
 def convert_to_jpg(source_path):
     target_path = source_path.with_suffix('.jpg')
     cmd = [
-        '/usr/bin/magick',
+        '/usr/bin/gm', 'convert',
         str(source_path),
         str(target_path)
     ]
