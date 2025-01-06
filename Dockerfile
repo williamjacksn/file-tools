@@ -2,7 +2,7 @@ FROM python:3.13-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN /usr/bin/apt-get update \
- && /usr/bin/apt-get install --assume-yes ffmpeg file imagemagick libimage-exiftool-perl \
+ && /usr/bin/apt-get install --assume-yes ffmpeg file graphicsmagick libimage-exiftool-perl \
  && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/sbin/useradd --create-home --shell /bin/bash --user-group python
