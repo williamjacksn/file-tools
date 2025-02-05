@@ -37,7 +37,9 @@ def to_mp4(source_path: pathlib.Path):
         '/usr/bin/ffmpeg',
         '-i', str(source_path),
         '-c:v', 'libx264',
+        '-profile:v', 'main',
         '-c:a', 'aac',
+        '-movflags', '+faststart',
         str(target_path)
     ]
     subprocess.call(cmd)
