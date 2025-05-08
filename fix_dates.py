@@ -5,7 +5,13 @@ import pathlib
 import readline
 import subprocess
 
-GET_DATES_CMD = ['exiftool', '-AllDates', '-FileModifyDate', '-FileAccessDate', '-FileInodeChangeDate']
+GET_DATES_CMD = [
+    "exiftool",
+    "-AllDates",
+    "-FileModifyDate",
+    "-FileAccessDate",
+    "-FileInodeChangeDate",
+]
 
 
 def print_dates(file):
@@ -13,31 +19,35 @@ def print_dates(file):
 
 
 def set_dates(file, date):
-    print(subprocess.check_output(['exiftool', '-overwrite_original', '-AllDates=' + date, str(file)],
-                                  universal_newlines=True))
+    print(
+        subprocess.check_output(
+            ["exiftool", "-overwrite_original", "-AllDates=" + date, str(file)],
+            universal_newlines=True,
+        )
+    )
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('dir', nargs='?', default='.')
+    parser.add_argument("dir", nargs="?", default=".")
     args = parser.parse_args()
     d = pathlib.Path(args.dir).resolve()
 
     files = []
     for item in d.iterdir():
-        if item.is_file() and item.suffix.lower() in ['.jpg']:
+        if item.is_file() and item.suffix.lower() in [".jpg"]:
             files.append(item)
 
     files.sort()
 
     for file in files:
-        print('***')
-        print('*', file)
+        print("***")
+        print("*", file)
         print_dates(file)
-        new_date = input('New date? ')
+        new_date = input("New date? ")
         if new_date:
             set_dates(file, new_date)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

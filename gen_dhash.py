@@ -7,7 +7,7 @@ import pathlib
 
 
 def print_return(s):
-    print(s + '\r', end='')
+    print(s + "\r", end="")
 
 
 def get_dhash(file_path):
@@ -19,7 +19,9 @@ def get_dhash(file_path):
 
 
 def main():
-    source_dir: pathlib.Path = pathlib.Path(os.getenv('SOURCE_DIR', os.getcwd())).resolve()
+    source_dir: pathlib.Path = pathlib.Path(
+        os.getenv("SOURCE_DIR", os.getcwd())
+    ).resolve()
 
     file_list = []
     count = 0
@@ -28,8 +30,8 @@ def main():
         for fn in files:
             count += 1
             file_list.append(root_path / fn)
-            print_return('Collected {} files'.format(count))
-    print('Collected {} files'.format(count))
+            print_return("Collected {} files".format(count))
+    print("Collected {} files".format(count))
 
     hashes = {}
     count = 0
@@ -41,16 +43,16 @@ def main():
             if file_hash is None:
                 continue
             hashes[str(futures[future])] = file_hash
-            print_return('Scanned {} files'.format(count))
-    print('Scanned {} files\n**'.format(count))
+            print_return("Scanned {} files".format(count))
+    print("Scanned {} files\n**".format(count))
 
-    dhash_file = pathlib.Path(os.getenv('DHASH_FILE'))
+    dhash_file = pathlib.Path(os.getenv("DHASH_FILE"))
     if dhash_file is None:
-        dhash_file = pathlib.Path(os.getcwd()) / 'dhash.json'
+        dhash_file = pathlib.Path(os.getcwd()) / "dhash.json"
     dhash_file = dhash_file.resolve()
-    with dhash_file.open('w') as f:
+    with dhash_file.open("w") as f:
         json.dump(hashes, f, indent=2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

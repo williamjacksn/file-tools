@@ -16,5 +16,5 @@ def main():
         print(count, ext)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

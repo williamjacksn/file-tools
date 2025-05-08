@@ -20,7 +20,7 @@ def yield_files(paths):
 
 
 def get_hash(file_path, buffer_size=65536):
-    with file_path.open(mode='rb') as f:
+    with file_path.open(mode="rb") as f:
         hasher = hashlib.md5()
         buffer = f.read(buffer_size)
         while len(buffer) > 0:
@@ -31,7 +31,7 @@ def get_hash(file_path, buffer_size=65536):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('path', nargs='+')
+    parser.add_argument("path", nargs="+")
     return parser.parse_args()
 
 
@@ -42,5 +42,5 @@ def main():
         file.rename(file.with_name(file_hash).with_suffix(file.suffix.lower()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

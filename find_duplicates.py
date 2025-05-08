@@ -8,7 +8,7 @@ import PIL.Image
 
 
 def print_return(s):
-    print(s + '\r', end='')
+    print(s + "\r", end="")
 
 
 def get_dhash(file_path):
@@ -21,7 +21,7 @@ def get_dhash(file_path):
 
 
 def get_hash(file_path, buffer_size=65536):
-    with file_path.open(mode='rb') as f:
+    with file_path.open(mode="rb") as f:
         hasher = hashlib.sha256()
         buffer = f.read(buffer_size)
         while len(buffer) > 0:
@@ -41,8 +41,8 @@ def main():
         for fn in files:
             count += 1
             file_list.append(root_path / fn)
-            print_return('Collected {} files'.format(count))
-    print('Collected {} files'.format(count))
+            print_return("Collected {} files".format(count))
+    print("Collected {} files".format(count))
 
     count = 0
     with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -56,8 +56,8 @@ def main():
                 dupes[hashes[file_hash]].append(futures[future])
             else:
                 hashes[file_hash] = futures[future]
-            print_return('Scanned {} files'.format(count))
-    print('Scanned {} files\n**'.format(count))
+            print_return("Scanned {} files".format(count))
+    print("Scanned {} files\n**".format(count))
 
     for first_file in sorted(dupes.keys()):
         print(first_file)
@@ -65,5 +65,6 @@ def main():
             print(dupe_file)
         input()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
