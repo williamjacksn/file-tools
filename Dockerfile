@@ -1,4 +1,4 @@
-FROM python:3.13-slim
+FROM ghcr.io/astral-sh/uv:0.7.21-bookworm-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN /usr/bin/apt-get update \
@@ -6,28 +6,26 @@ RUN /usr/bin/apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/sbin/useradd --create-home --shell /bin/bash --user-group python
-
 USER python
-RUN /usr/local/bin/python -m venv /home/python/venv
 
-COPY --chown=python:python requirements.txt /home/python/file-tools/requirements.txt
-RUN /home/python/venv/bin/pip install --no-cache-dir --requirement /home/python/file-tools/requirements.txt
+WORKDIR /app
+COPY --chown=python:python .python-version pyproject.toml uv.lock ./
+RUN /usr/local/bin/uv sync --frozen
 
-ENV PATH="/home/python/venv/bin:${PATH}" \
+ENV PATH="/app/.venv/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE="1" \
     PYTHONUNBUFFERED="1" \
     TZ="Etc/UTC"
 
-WORKDIR /home/python/file-tools
 ENTRYPOINT ["/bin/bash"]
 
 LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>"
 
-COPY --chown=python:python convert-to.py /home/python/file-tools/convert-to.py
-COPY --chown=python:python count-extensions.py /home/python/file-tools/count-extensions.py
-COPY --chown=python:python find_duplicates.py /home/python/file-tools/find_duplicates.py
-COPY --chown=python:python find_similar.py /home/python/file-tools/find_similar.py
-COPY --chown=python:python fix_dates.py /home/python/file-tools/fix_dates.py
-COPY --chown=python:python gen_dhash.py /home/python/file-tools/gen_dhash.py
-COPY --chown=python:python hash_rename.py /home/python/file-tools/hash_rename.py
-COPY --chown=python:python remove_live_photos.py /home/python/file-tools/remove_live_photos.py
+COPY --chown=python:python convert-to.py ./
+COPY --chown=python:python count-extensions.py ./
+COPY --chown=python:python find_duplicates.py ./
+COPY --chown=python:python find_similar.py ./
+COPY --chown=python:python fix_dates.py ./
+COPY --chown=python:python gen_dhash.py ./
+COPY --chown=python:python hash_rename.py ./
+COPY --chown=python:python remove_live_photos.py ./
