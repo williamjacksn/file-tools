@@ -1,3 +1,4 @@
+from collections.abc import Callable
 import argparse
 import pathlib
 import subprocess
@@ -41,7 +42,7 @@ def to_mp4(source_path: pathlib.Path):
     subprocess.call(cmd)
 
 
-actions = {
+actions: dict[str, Callable[[pathlib.Path], None]] = {
     "jpg": to_jpg,
     "mp3": to_mp3,
     "mp4": to_mp4,
@@ -51,7 +52,7 @@ actions = {
 def main():
     args = parse_args()
     total = len(args.files)
-    action = actions.get(args.format)
+    action = actions[args.format]
     for i, filename in enumerate(args.files, start=1):
         source_path = pathlib.Path(filename).resolve()
         print(f"Processing {source_path} ({i} of {total})")
