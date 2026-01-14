@@ -10,3 +10,6 @@ dependencies = [
     "pillow>=11.3.0",
     "pybktree>=1.1",
 ]
+
+[tool.ruff.lint]
+select = ["ANN", "E", "F", "FURB", "I", "PERF", "RUF", "S", "UP"]

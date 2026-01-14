@@ -1,7 +1,7 @@
 import argparse
+import datetime
 import pathlib
 import subprocess
-import datetime
 
 
 class Args:

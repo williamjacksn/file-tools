@@ -1,8 +1,9 @@
 import json
 import os
 import pathlib
-import pybktree
 import typing
+
+import pybktree
 
 
 class Image(typing.NamedTuple):

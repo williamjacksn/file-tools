@@ -1,9 +1,10 @@
-import PIL.Image
 import concurrent.futures
-import dhash
 import json
 import os
 import pathlib
+
+import dhash
+import PIL.Image
 
 
 def print_return(s):

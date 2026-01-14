@@ -1,9 +1,10 @@
 import collections
 import concurrent.futures
-import dhash
 import hashlib
 import os
 import pathlib
+
+import dhash
 import PIL.Image
 
 

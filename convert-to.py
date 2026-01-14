@@ -1,7 +1,7 @@
-from collections.abc import Callable
 import argparse
 import pathlib
 import subprocess
+from collections.abc import Callable
 
 
 def parse_args() -> argparse.Namespace:
