@@ -28,4 +28,4 @@ COPY --chown=python:python find_similar.py ./
 COPY --chown=python:python fix_dates.py ./
 COPY --chown=python:python gen_dhash.py ./
 COPY --chown=python:python hash_rename.py ./
-COPY --chown=python:python remove_live_photos.py ./
+COPY --chown=python:python remove-live-photos.py ./
