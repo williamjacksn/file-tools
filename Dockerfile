@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:0.12.13-trixie-slim
+FROM ghcr.io/astral-sh/uv:0.12.17-trixie-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN /usr/bin/apt-get update \
